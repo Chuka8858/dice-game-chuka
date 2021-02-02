@@ -37,23 +37,45 @@ document.querySelector(".btn-roll").addEventListener("click", function () {
   } else {
     //   1 buusan tul toglogchiin eeljiig solino
     // ene toglogchiin eeljinee tsugluulsan onoog 0 bolgoloo
-    rounScore = 0;
-    document.getElementById("current-" + activePlayer).textContent = 0;
-    // toglogchiin eeljiig ngo togloch ru shiljiilnee
-    // herew idewehtei toglogch n  0 baiwal idwehtei toglogchiig 1 bolgo
-    // herew ugui bol  idewehtei toglogchiig  0 bolgo
-
-    activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
-    // ulaan tseg shiljuulelt
-    document.querySelector(".player-0-panel").classList.toggle("active");
-    document.querySelector(".player-1-panel").classList.toggle("active");
-    // shoog tur alga bolgoh
-    diceDom.style.display = "none";
-
-    // if (activePlayer === 0) {
-    //   activePlayer = 1;
-    // } else {
-    //   activePlayer = 0;
-    // }
+    switchToNextPlayer();
   }
 });
+
+// hold towchnii listener
+document.querySelector(".btn-hold").addEventListener("click", function () {
+  // ug toglogchiin tsugluulsan onoog global onoon derr nemj ogno
+  score[activePlayer] = score[activePlayer] + rounScore;
+
+  //   web re toog n oorchlono
+  document.getElementById("score-" + activePlayer).textContent =
+    score[activePlayer];
+
+  // ug toglogch hojison eseh shalgah
+  if (score[activePlayer] >= 100) {
+    //   ylagch gsen ttext web dr gargah
+    document.getElementById("name-" + activePlayer).textContent = "WINNER!!!";
+    document
+      .querySelector(".player-" + activePlayer + "-panel")
+      .classList.add("winner");
+    document
+      .querySelector(".player-" + activePlayer + "-panel")
+      .classList.remove("active");
+  } else {
+    switchToNextPlayer();
+  }
+});
+
+function switchToNextPlayer() {
+  rounScore = 0;
+  document.getElementById("current-" + activePlayer).textContent = 0;
+
+  // toglogchiin eeljiig ngo togloch ru shiljiilnee
+  activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+
+  // ulaan tseg shiljuulelt
+  document.querySelector(".player-0-panel").classList.toggle("active");
+  document.querySelector(".player-1-panel").classList.toggle("active");
+
+  // shoog tur alga bolgoh
+  diceDom.style.display = "none";
+}

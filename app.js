@@ -1,26 +1,46 @@
-// toglogchiin eeljiig hadgalah huvisagch
+//togloomiiin buh gazar global huvisagch zarlah
+var activePlayer, score, rounScore;
 
-var activePlayer = 0;
-
-// toglogchidiin score huvisagch
-
-var score = [0, 0];
-
-// toglocghiin eeljindee tsugluulj bui onoo hivisagch
-
-var rounScore = 0;
-
-// shoonii ali talaaraa buuusniig hadgalah huvisagch heregtei 1-6 rendom huvisagch uusgeh
-
-var diceNumber = Math.floor(Math.random() * 6) + 1;
-//  programm ehelhed beldeh
-document.getElementById("score-0").textContent = "0";
-document.getElementById("score-1").textContent = "0";
-document.getElementById("current-0").textContent = "0";
-document.getElementById("current-1").textContent = "0";
-
+// shoonii zurgiig uzuuleh
 var diceDom = document.querySelector(".dice");
-diceDom.style.display = "none";
+// togloomiig shineer ehelhed beltgene
+// togloom ehluuleh
+initGame();
+function initGame() {
+  // toglogchiin eeljiig hadgalah huvisagch
+
+  activePlayer = 0;
+
+  // toglogchidiin score huvisagch
+
+  score = [0, 0];
+
+  // toglocghiin eeljindee tsugluulj bui onoo hivisagch
+
+  rounScore = 0;
+
+  // shoonii ali talaaraa buuusniig hadgalah huvisagch heregtei 1-6 rendom huvisagch uusgeh
+
+  //  programm ehelhed beldeh
+  document.getElementById("score-0").textContent = "0";
+  document.getElementById("score-1").textContent = "0";
+  document.getElementById("current-0").textContent = "0";
+  document.getElementById("current-1").textContent = "0";
+  //   toglogchdiin neriig butsaaj gargah
+  document.getElementById("name-0").textContent = "Player 1";
+  document.getElementById("name-1").textContent = "Player 2";
+
+  document.querySelector(".player-0-panel").classList.remove("winner");
+  document.querySelector(".player-1-panel").classList.remove("winner");
+
+  document.querySelector(".player-0-panel").classList.remove("active");
+  document.querySelector(".player-1-panel").classList.remove("active");
+
+  document.querySelector(".player-1-panel").classList.add("active");
+
+  diceDom.style.display = "none";
+}
+
 //  shoog shideh event listener
 document.querySelector(".btn-roll").addEventListener("click", function () {
   //    1 - 6 hurtel sanamsargui too gargaj avna
@@ -79,3 +99,5 @@ function switchToNextPlayer() {
   // shoog tur alga bolgoh
   diceDom.style.display = "none";
 }
+//  new game
+document.querySelector(".btn-new").addEventListener("click", initGame);

@@ -1,5 +1,5 @@
 // togloom duussan eseh hadgalah huvisagchj
-var isGameOver;
+var isNewGame;
 //togloomiiin buh gazar global huvisagch zarlah
 
 var activePlayer, score, rounScore;
@@ -11,7 +11,7 @@ var diceDom = document.querySelector(".dice");
 initGame();
 function initGame() {
   //  togloom eheellle gdg tolow oruulna
-  isGameOver = false;
+  isNewGame = true;
 
   // toglogchiin eeljiig hadgalah huvisagch
 
@@ -49,7 +49,7 @@ function initGame() {
 
 //  shoog shideh event listener
 document.querySelector(".btn-roll").addEventListener("click", function () {
-  if (isGameOver !== true) {
+  if (isNewGame) {
     //    1 - 6 hurtel sanamsargui too gargaj avna
     var diceNumber = Math.floor(Math.random() * 6) + 1;
     //   sshoonii zurg web deer gargaj irne
@@ -75,7 +75,7 @@ document.querySelector(".btn-roll").addEventListener("click", function () {
 
 // hold towchnii listener
 document.querySelector(".btn-hold").addEventListener("click", function () {
-  if (isGameOver) {
+  if (isNewGame) {
     // ug toglogchiin tsugluulsan onoog global onoon derr nemj ogno
     score[activePlayer] = score[activePlayer] + rounScore;
 
@@ -86,7 +86,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
     // ug toglogch hojison eseh shalgah
     if (score[activePlayer] >= 10) {
       //   tolgoomiig duussan tolowt oruulna
-      isGameOver = true;
+      isNewGame = false;
       //   ylagch gsen ttext web dr gargah
       document.getElementById("name-" + activePlayer).textContent = "WINNER!!!";
       document
